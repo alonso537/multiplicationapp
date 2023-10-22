@@ -22,4 +22,11 @@ export const yarg = yargs(hideBin(process.argv))
         default: false,
         description: 'Show the table multiplication'
     })
+    .check((argv, options) => {
+
+        if(argv.b < 1) throw 'b must be greater than 0'
+
+
+        return true
+    })
     .parseSync()
