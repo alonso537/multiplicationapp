@@ -1,7 +1,10 @@
 import fs from 'fs'
+import { yarg } from './config/plugins/args.plugin';
+
+
 
 let outputMessage = '';
-const base = 5;
+const base = yarg.b;
 
 const headerMessage = `
 ================================================================
@@ -9,13 +12,15 @@ const headerMessage = `
 ================================================================\n
 `;
 
-for(let i = 1; i < 11; i++) {
+for(let i = 1; i < yarg.l + 1; i++) {
     outputMessage += `${base} x ${i} = ${base * i}\n`;
 }
 
 outputMessage = headerMessage + outputMessage
 
-console.log(outputMessage);
+if(yarg.s) {
+    console.log(outputMessage);
+}
 
 const outputPath = `outputs`
 
