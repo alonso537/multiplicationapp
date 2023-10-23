@@ -4,17 +4,19 @@ import { SaveFile } from "../domain/use-cases/save-file.use-case";
 interface RubOptions {
     base: number;
     limit: number;
-    showTable: boolean
+    showTable: boolean;
+    name: string;
+    dest: string;
 }
 
 export class ServerApp {
 
 
-    static run({base, limit, showTable}: RubOptions) {
+    static run({base, limit, showTable, name, dest}: RubOptions) {
         console.log('Server Running');
 
         const table = new CreateTable().execute({base, limit})
-        const wasSaved = new SaveFile().execute({fileContent: table})
+        const wasSaved = new SaveFile().execute({fileContent: table, destination: dest, fuleName: name})
 
         if(showTable)console.log(table);
 

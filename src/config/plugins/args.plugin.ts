@@ -22,6 +22,18 @@ export const yarg = yargs(hideBin(process.argv))
         default: false,
         description: 'Show the table multiplication'
     })
+    .option('n', {
+        alias: 'name',
+        type: 'string',
+        default: 'table',
+        description: 'File Name'
+    })
+    .option('d', {
+        alias: 'destination',
+        type: 'string',
+        default: './outputs',
+        description: 'File Destination'
+    })
     .check((argv, options) => {
 
         if(argv.b < 1) throw 'b must be greater than 0'
